@@ -1,0 +1,11 @@
+---
+- name: Install packages
+  hosts: build
+  gather_facts: false
+  become: true
+
+  roles:
+    - vimrc
+    - tmux
+    - buildbot
+    - nginx

@@ -1,0 +1,35 @@
+---
+- name: Install packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  with_items: "{{ packages }}"
+
+- name: Creating a virtualenv
+  command: python3 -m venv /home/ubuntu/tmp/bb-master/sandbox
+  become_user: ubuntu
+
+- name: Install buildbot
+  pip:
+    name: buildbot['bundle']
+    virtualenv: /home/ubuntu/tmp/bb-master/sandbox
+  become_user: ubuntu
+
+- name: Create buildbot master
+  shell: /home/ubuntu/tmp/bb-master/sandbox/bin/buildbot create-master master
+  args:
+    chdir: /home/ubuntu/tmp/bb-master
+  become_user: ubuntu
+
+- name: Config buildbot master
+  shell: mv master.cfg.sample master.cfg
+  args:
+    chdir: /home/ubuntu/tmp/bb-master/master
+  become_user: ubuntu
+
+- name: Start buildbot master
+  shell: /home/ubuntu/tmp/bb-master/sandbox/bin/buildbot start master
+  args:
+    chdir: /home/ubuntu/tmp/bb-master
+  become_user: ubuntu

@@ -1,0 +1,10 @@
+server {
+    listen 80;
+    root /var/www/html;
+    
+    index index.html index.nginx-debian.html;
+
+    location / {
+	proxy_pass http://localhost:8010/;
+    }
+}

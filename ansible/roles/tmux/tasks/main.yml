@@ -1,0 +1,5 @@
+---
+- name: Get tmux.conf from GitHub
+  get_url:
+    url: https://raw.githubusercontent.com/mehemken/my-vimrc/master/tmux.conf
+    dest: /home/ubuntu/.tmux.conf

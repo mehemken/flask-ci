@@ -1,0 +1,6 @@
+---
+packages:
+  - python3-pip
+  - python3-venv
+  - tree
+  - git

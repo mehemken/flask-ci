@@ -1,0 +1,5 @@
+---
+- name: Get vimrc from GitHub
+  get_url:
+    url: https://raw.githubusercontent.com/mehemken/my-vimrc/master/vimrc.txt
+    dest: /home/ubuntu/.vimrc

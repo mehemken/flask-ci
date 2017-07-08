@@ -1,0 +1,14 @@
+[build]
+ec2-34-211-235-29.us-west-2.compute.amazonaws.com
+
+[production]
+ec2-35-165-175-69.us-west-2.compute.amazonaws.com
+
+[all:children]
+build
+production
+
+[all:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_user=ubuntu
+

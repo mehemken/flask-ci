@@ -1,0 +1,23 @@
+---
+- name: Install packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: true
+  with_items: "{{ packages }}"
+
+- name: Confirm services are started
+  service:
+    name: "{{ item }}"
+    state: started
+  with_items: "{{ services }}"
+
+- name: Add nginx server
+  template:
+    src: "default"
+    dest: /etc/nginx/sites-available/default
+
+- name: Restart nginx
+  service:
+    name: nginx
+    state: restarted
